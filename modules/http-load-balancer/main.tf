@@ -76,15 +76,15 @@ resource "google_compute_target_https_proxy" "default" {
 # IF DNS ENTRY REQUESTED, CREATE A RECORD POINTING TO THE PUBLIC IP OF THE CLB
 # ------------------------------------------------------------------------------
 
-resource "google_dns_record_set" "dns" {
-  project = var.project
-  count   = var.create_dns_entries ? length(var.custom_domain_names) : 0
+# resource "google_dns_record_set" "dns" {
+#   project = var.project
+#   count   = var.create_dns_entries ? length(var.custom_domain_names) : 0
 
-  name = "${element(var.custom_domain_names, count.index)}."
-  type = "A"
-  ttl  = var.dns_record_ttl
+#   name = "${element(var.custom_domain_names, count.index)}."
+#   type = "A"
+#   ttl  = var.dns_record_ttl
 
-  managed_zone = var.dns_managed_zone_name
+#   managed_zone = var.dns_managed_zone_name
 
-  rrdatas = [google_compute_global_address.default.address]
-}
+#   rrdatas = [google_compute_global_address.default.address]
+# }
